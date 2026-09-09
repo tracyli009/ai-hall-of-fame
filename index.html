@@ -1,0 +1,2192 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>北美高校联盟 AI 名人堂</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0f1923;
+  --ink-mid: #2d3a4a;
+  --ink-soft: #5a6a7a;
+  --paper: #f5f8fb;
+  --paper-warm: #eaf0f7;
+  --gold: #C8102E;
+  --gold-light: #e8304e;
+  --blue-deep: #005588;
+  --blue-mid: #0070b3;
+  --blue-rule: #b3d4e8;
+  --hall: #9a0821;
+  --hall-bg: #fff0f2;
+  --roster: #005588;
+  --roster-bg: #eaf4fb;
+  --rising: #004070;
+  --rising-bg: #e8f3fb;
+  --merit: #5a0020;
+  --merit-bg: #fff0f4;
+  --pending: #6a7a8a;
+  --border: #ccdae6;
+  --shadow: rgba(26,31,46,0.08);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Inter', 'Noto Serif SC', sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+/* NAV */
+nav {
+  background: var(--blue-deep);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2.5rem;
+  height: 56px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 2px solid var(--gold);
+}
+.nav-logo {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: white;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.nav-logo .vi-star { color: var(--gold-light); font-size: 1rem; }
+.nav-logo span { color: rgba(255,255,255,0.7); font-weight: 300; }
+.nav-links {
+  display: flex;
+  gap: 0;
+  list-style: none;
+}
+.nav-links li a {
+  display: block;
+  padding: 0 1.1rem;
+  height: 56px;
+  line-height: 56px;
+  color: rgba(255,255,255,0.82);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  transition: color 0.15s, background 0.15s;
+  border-bottom: 2px solid transparent;
+}
+.nav-links li a:hover,
+.nav-links li a.active {
+  color: white;
+  border-bottom-color: #e8304e;
+  background: rgba(255,255,255,0.08);
+}
+
+/* PAGE SYSTEM */
+.page { display: none; }
+.page.active { display: block; }
+
+/* ── PAGE 1: HOME ── */
+.hero {
+  background: linear-gradient(170deg, #003d66 0%, var(--blue-deep) 55%, var(--blue-mid) 100%);
+  color: white;
+  padding: 4rem 2.5rem 3.5rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg, transparent, transparent 39px,
+    rgba(255,255,255,0.03) 39px, rgba(255,255,255,0.03) 40px
+  );
+}
+.hero-eyebrow {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: #f0a0b0;
+  margin-bottom: 1.2rem;
+  text-transform: uppercase;
+  position: relative;
+}
+.hero h1 {
+  font-family: 'EB Garamond', serif;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 500;
+  line-height: 1.25;
+  margin-bottom: 0.5rem;
+  position: relative;
+}
+.hero-sub {
+  font-family: 'EB Garamond', serif;
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.72);
+  font-style: italic;
+  position: relative;
+  margin-bottom: 2rem;
+}
+.hero-motto {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  position: relative;
+}
+.motto-item {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.88);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.motto-item::before {
+  content: '';
+  display: inline-block;
+  width: 24px;
+  height: 1px;
+  background: #e8304e;
+}
+
+.stats-bar {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  background: var(--paper-warm);
+  border-bottom: 1px solid var(--border);
+}
+.stat-item {
+  padding: 1.4rem 2.5rem;
+  text-align: center;
+  border-right: 1px solid var(--border);
+}
+.stat-item:last-child { border-right: none; }
+.stat-num {
+  font-family: 'EB Garamond', serif;
+  font-size: 2rem;
+  font-weight: 500;
+  color: var(--blue-deep);
+  display: block;
+  line-height: 1;
+}
+.stat-label {
+  font-size: 0.72rem;
+  color: var(--ink-soft);
+  letter-spacing: 0.06em;
+  margin-top: 0.3rem;
+}
+
+.home-sections {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 2.5rem;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 3rem;
+}
+.section-title {
+  font-family: 'EB Garamond', serif;
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: var(--blue-deep);
+  border-bottom: 1.5px solid var(--gold);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+  /* gold var now maps to #C8102E — Christ Red */
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+}
+.section-title small {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.72rem;
+  color: var(--ink-soft);
+  letter-spacing: 0.06em;
+  font-weight: 400;
+}
+
+/* FEATURED PERSONS GRID */
+.person-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  margin-bottom: 2rem;
+}
+.person-card {
+  background: white;
+  padding: 1.4rem 1.5rem;
+  cursor: pointer;
+  transition: background 0.12s;
+  position: relative;
+}
+.person-card:hover { background: #eaf4fb; }
+.person-tier {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  padding: 2px 7px;
+  border-radius: 2px;
+  margin-bottom: 0.6rem;
+}
+.tier-hall { background: #fff0f2; color: #9a0821; border: 1px solid #f0b0bc; }
+.tier-roster { background: #eaf4fb; color: #005588; border: 1px solid #99ccee; }
+.tier-rising { background: #e8f3fb; color: #004070; border: 1px solid #88bbdd; }
+.tier-merit { background: #fdf0f2; color: #7a0018; border: 1px solid #e8b0bc; }
+
+.person-name {
+  font-family: 'EB Garamond', serif;
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 0.2rem;
+}
+.person-name-en {
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  margin-bottom: 0.5rem;
+}
+.person-one-liner {
+  font-size: 0.82rem;
+  color: var(--ink-mid);
+  line-height: 1.5;
+}
+.person-affil {
+  font-size: 0.72rem;
+  color: var(--ink-soft);
+  margin-top: 0.5rem;
+}
+
+/* SIDEBAR */
+.home-sidebar {}
+.tier-legend {
+  background: white;
+  border: 1px solid var(--border);
+  margin-bottom: 1.5rem;
+}
+.tier-legend-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+  padding: 0.9rem 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.tier-legend-item:last-child { border-bottom: none; }
+.tier-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+.tier-legend-text strong {
+  display: block;
+  font-size: 0.82rem;
+  color: var(--ink);
+  margin-bottom: 0.15rem;
+}
+.tier-legend-text p {
+  font-size: 0.74rem;
+  color: var(--ink-soft);
+  line-height: 1.45;
+}
+
+.notice-box {
+  background: #f0f7fd;
+  border: 1px solid #b3d4e8;
+  border-left: 3px solid var(--blue-deep);
+  padding: 1rem 1.1rem;
+  font-size: 0.8rem;
+  color: var(--ink-mid);
+  line-height: 1.55;
+}
+.notice-box strong { color: var(--blue-deep); }
+
+/* ── PAGE 2: SEARCH ── */
+.search-page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2.5rem 2.5rem;
+}
+.search-header {
+  margin-bottom: 2rem;
+}
+.search-header h2 {
+  font-family: 'EB Garamond', serif;
+  font-size: 1.8rem;
+  color: var(--blue-deep);
+  margin-bottom: 0.5rem;
+}
+.search-header p {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
+
+.filter-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr) auto;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+  align-items: end;
+}
+.filter-group label {
+  display: block;
+  font-size: 0.72rem;
+  color: var(--ink-soft);
+  letter-spacing: 0.05em;
+  margin-bottom: 0.3rem;
+  text-transform: uppercase;
+}
+.filter-group select,
+.filter-group input {
+  width: 100%;
+  padding: 0.55rem 0.8rem;
+  border: 1px solid var(--border);
+  background: white;
+  font-size: 0.85rem;
+  color: var(--ink);
+  font-family: inherit;
+  border-radius: 2px;
+  outline: none;
+}
+.filter-group select:focus,
+.filter-group input:focus { border-color: var(--blue-mid); }
+.search-text-row {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+.search-text-row input {
+  flex: 1;
+  padding: 0.6rem 1rem;
+  border: 1.5px solid var(--border);
+  font-size: 0.9rem;
+  font-family: inherit;
+  color: var(--ink);
+  border-radius: 2px;
+  outline: none;
+}
+.search-text-row input:focus { border-color: var(--blue-mid); }
+
+.btn {
+  padding: 0.6rem 1.4rem;
+  font-size: 0.85rem;
+  font-family: inherit;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  border-radius: 2px;
+  letter-spacing: 0.02em;
+}
+.btn-primary {
+  background: var(--blue-deep);
+  color: white;
+}
+.btn-primary:hover { background: var(--blue-mid); }
+.btn-ghost {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--ink-mid);
+}
+.btn-ghost:hover { border-color: var(--ink-mid); }
+
+.results-meta {
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.results-sort select {
+  border: none;
+  font-size: 0.8rem;
+  color: var(--ink-mid);
+  font-family: inherit;
+  background: transparent;
+  cursor: pointer;
+}
+
+.results-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.results-table th {
+  background: var(--paper-warm);
+  border: 1px solid var(--border);
+  padding: 0.6rem 1rem;
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--ink-soft);
+  letter-spacing: 0.06em;
+  text-align: left;
+}
+.results-table td {
+  border: 1px solid var(--border);
+  padding: 0.9rem 1rem;
+  font-size: 0.85rem;
+  vertical-align: top;
+  background: white;
+}
+.results-table tr:hover td { background: #eaf4fb; cursor: pointer; }
+.results-table .name-cell {
+  font-family: 'EB Garamond', serif;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--blue-deep);
+}
+.results-table .name-en {
+  font-size: 0.75rem;
+  color: var(--ink-soft);
+  font-family: 'Inter', sans-serif;
+}
+.source-count {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.75rem;
+  color: var(--ink-soft);
+}
+.source-dot { width: 6px; height: 6px; border-radius: 50%; background: #4caf50; }
+
+/* ── PAGE 3: PERSON ── */
+.person-page {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 2.5rem 2.5rem;
+}
+.back-link {
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 2rem;
+  cursor: pointer;
+}
+.back-link:hover { color: var(--blue-mid); }
+.person-masthead {
+  border-bottom: 2px solid var(--blue-rule);
+  padding-bottom: 1.5rem;
+  margin-bottom: 2rem;
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+}
+.person-avatar {
+  width: 80px;
+  height: 80px;
+  background: var(--paper-warm);
+  border: 1.5px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 1.8rem;
+  font-family: 'EB Garamond', serif;
+  color: var(--ink-soft);
+}
+.person-masthead-info {}
+.person-full-name {
+  font-family: 'EB Garamond', serif;
+  font-size: 2rem;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.2;
+  margin-bottom: 0.2rem;
+}
+.person-full-name-en {
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  margin-bottom: 0.6rem;
+}
+.person-contribution-lede {
+  font-family: 'EB Garamond', serif;
+  font-size: 1.15rem;
+  font-style: italic;
+  color: var(--ink-mid);
+  line-height: 1.5;
+  border-left: 3px solid var(--gold);
+  padding-left: 1rem;
+  margin-bottom: 1rem;
+}
+.person-meta-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.meta-tag {
+  font-size: 0.72rem;
+  padding: 3px 9px;
+  border: 1px solid var(--border);
+  color: var(--ink-mid);
+  border-radius: 2px;
+  background: var(--paper-warm);
+}
+
+.person-section {
+  margin-bottom: 2rem;
+}
+.person-section-heading {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+.affil-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.affil-chip {
+  background: white;
+  border: 1.5px solid var(--blue-rule);
+  padding: 0.45rem 0.9rem;
+  font-size: 0.82rem;
+  color: var(--blue-deep);
+  border-radius: 2px;
+}
+.affil-chip.primary { border-color: var(--blue-mid); background: #f0f4ff; }
+
+.works-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 1px solid var(--border);
+}
+.work-item {
+  padding: 1rem 1.2rem;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+.work-item:last-child { border-bottom: none; }
+.work-num {
+  font-family: 'EB Garamond', serif;
+  font-size: 1.1rem;
+  color: var(--ink-soft);
+  flex-shrink: 0;
+  width: 24px;
+}
+.work-content {}
+.work-title {
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--blue-deep);
+  margin-bottom: 0.2rem;
+}
+.work-meta {
+  font-size: 0.76rem;
+  color: var(--ink-soft);
+  margin-bottom: 0.4rem;
+}
+.work-link {
+  font-size: 0.75rem;
+  color: var(--gold);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--gold);
+}
+.work-link:hover { color: var(--blue-deep); }
+.work-pending {
+  font-size: 0.75rem;
+  color: var(--pending);
+  font-style: italic;
+}
+
+.sources-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.source-item {
+  display: flex;
+  gap: 0.8rem;
+  align-items: flex-start;
+  font-size: 0.8rem;
+}
+.source-tier-badge {
+  flex-shrink: 0;
+  font-size: 0.65rem;
+  font-weight: 600;
+  padding: 2px 5px;
+  border-radius: 2px;
+  margin-top: 1px;
+}
+.tier1 { background: #e8f5e9; color: #2e7d32; border: 1px solid #a5d6a7; }
+.tier2 { background: #e3f2fd; color: #1565c0; border: 1px solid #90caf9; }
+.tier3 { background: #fff8e1; color: #f57f17; border: 1px solid #ffe082; }
+.source-text { color: var(--ink-mid); line-height: 1.45; }
+.source-text a { color: var(--blue-mid); text-decoration: none; border-bottom: 1px dotted var(--blue-rule); }
+
+.correction-bar {
+  background: var(--paper-warm);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--ink-soft);
+  padding: 0.8rem 1.1rem;
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.correction-bar a {
+  color: var(--blue-mid);
+  text-decoration: none;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* ── PAGE 4: UNIVERSITY WALL ── */
+.uni-wall-page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2.5rem 2.5rem;
+}
+.uni-wall-header {
+  margin-bottom: 2rem;
+}
+.uni-wall-header h2 {
+  font-family: 'EB Garamond', serif;
+  font-size: 1.8rem;
+  color: var(--blue-deep);
+  margin-bottom: 0.4rem;
+}
+.uni-tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 2px solid var(--border);
+  margin-bottom: 2rem;
+  overflow-x: auto;
+}
+.uni-tab {
+  padding: 0.7rem 1.5rem;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: color 0.12s;
+}
+.uni-tab.active {
+  color: var(--blue-deep);
+  border-bottom-color: var(--blue-deep);
+  font-weight: 500;
+}
+.uni-tab:hover { color: var(--ink); }
+.uni-count {
+  font-size: 0.7rem;
+  background: var(--paper-warm);
+  border: 1px solid var(--border);
+  padding: 1px 6px;
+  border-radius: 10px;
+  color: var(--ink-soft);
+}
+
+.uni-panel { display: none; }
+.uni-panel.active { display: block; }
+
+.uni-header-strip {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 1.5rem 1.8rem;
+  background: white;
+  border: 1px solid var(--border);
+  border-bottom: none;
+  margin-bottom: 0;
+}
+.uni-name-block {}
+.uni-full-name {
+  font-family: 'EB Garamond', serif;
+  font-size: 1.6rem;
+  color: var(--blue-deep);
+  margin-bottom: 0.2rem;
+}
+.uni-tagline {
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+  font-style: italic;
+}
+.uni-stats-mini {
+  display: flex;
+  gap: 1.5rem;
+  text-align: center;
+}
+.uni-stat-mini {}
+.uni-stat-mini .num {
+  font-family: 'EB Garamond', serif;
+  font-size: 1.6rem;
+  color: var(--blue-deep);
+  display: block;
+}
+.uni-stat-mini .lbl {
+  font-size: 0.7rem;
+  color: var(--ink-soft);
+}
+
+.uni-roster-grid {
+  border: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+}
+.uni-person-cell {
+  background: white;
+  padding: 1.1rem 1.2rem;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  transition: background 0.12s;
+}
+.uni-person-cell:hover { background: #eaf4fb; }
+.uni-person-cell:nth-child(3n) { border-right: none; }
+
+/* ── PAGE 5: NOMINATION ── */
+.nom-page {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 2.5rem 2.5rem;
+}
+.nom-header { margin-bottom: 2rem; }
+.nom-header h2 {
+  font-family: 'EB Garamond', serif;
+  font-size: 1.8rem;
+  color: var(--blue-deep);
+  margin-bottom: 0.4rem;
+}
+.nom-header p { font-size: 0.85rem; color: var(--ink-soft); }
+.form-section {
+  margin-bottom: 2rem;
+  background: white;
+  border: 1px solid var(--border);
+}
+.form-section-header {
+  background: var(--paper-warm);
+  padding: 0.7rem 1.2rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--ink-soft);
+  border-bottom: 1px solid var(--border);
+  text-transform: uppercase;
+}
+.form-body { padding: 1.2rem; }
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+.form-row.full { grid-template-columns: 1fr; }
+.form-field label {
+  display: block;
+  font-size: 0.74rem;
+  color: var(--ink-soft);
+  margin-bottom: 0.3rem;
+  font-weight: 500;
+}
+.form-field input,
+.form-field select,
+.form-field textarea {
+  width: 100%;
+  padding: 0.55rem 0.75rem;
+  border: 1px solid var(--border);
+  font-size: 0.85rem;
+  font-family: inherit;
+  color: var(--ink);
+  border-radius: 2px;
+  outline: none;
+  background: white;
+}
+.form-field textarea { resize: vertical; min-height: 80px; line-height: 1.55; }
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus { border-color: var(--blue-mid); }
+.required-star { color: var(--hall); }
+.form-note {
+  font-size: 0.74rem;
+  color: var(--ink-soft);
+  margin-top: 0.3rem;
+  line-height: 1.4;
+}
+.source-evidence-row {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  align-items: center;
+}
+.source-evidence-row input { flex: 1; }
+.source-num {
+  width: 20px;
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+  text-align: right;
+  flex-shrink: 0;
+}
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  padding: 1.2rem;
+  border-top: 1px solid var(--border);
+  background: var(--paper-warm);
+}
+.consent-row {
+  display: flex;
+  gap: 0.7rem;
+  align-items: flex-start;
+  margin-bottom: 0.75rem;
+}
+.consent-row input[type="checkbox"] { margin-top: 3px; flex-shrink: 0; }
+.consent-row label { font-size: 0.8rem; color: var(--ink-mid); line-height: 1.5; }
+
+/* ── PAGE 6: CHARTER ── */
+.charter-page {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 2.5rem 2.5rem;
+}
+.charter-header {
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid var(--gold);
+  /* gold now maps to Christ Red #C8102E */
+}
+.charter-header h2 {
+  font-family: 'EB Garamond', serif;
+  font-size: 1.8rem;
+  color: var(--blue-deep);
+  margin-bottom: 0.3rem;
+}
+.charter-header p { font-size: 0.85rem; color: var(--ink-soft); }
+.charter-article {
+  margin-bottom: 2rem;
+}
+.charter-article h3 {
+  font-family: 'EB Garamond', serif;
+  font-size: 1.2rem;
+  color: var(--blue-deep);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.article-num {
+  font-size: 0.72rem;
+  background: var(--blue-deep);
+  color: white;
+  padding: 2px 7px;
+  border-radius: 2px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+}
+.charter-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+}
+.charter-table th {
+  background: var(--paper-warm);
+  border: 1px solid var(--border);
+  padding: 0.6rem 0.9rem;
+  font-size: 0.76rem;
+  font-weight: 500;
+  color: var(--ink-mid);
+  text-align: left;
+}
+.charter-table td {
+  border: 1px solid var(--border);
+  padding: 0.75rem 0.9rem;
+  font-size: 0.84rem;
+  background: white;
+  vertical-align: top;
+}
+.charter-prose {
+  font-size: 0.85rem;
+  color: var(--ink-mid);
+  line-height: 1.7;
+  margin-bottom: 0.8rem;
+}
+.charter-prose strong { color: var(--ink); }
+.correction-form-preview {
+  background: var(--paper-warm);
+  border: 1px solid var(--border);
+  padding: 1.1rem 1.2rem;
+  font-size: 0.82rem;
+  color: var(--ink-mid);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+/* AI ANSWER BOX */
+.ai-box {
+  background: linear-gradient(135deg, #eaf4fb, #f0f7fd);
+  border: 1px solid #b3d4e8;
+  border-left: 3px solid var(--blue-deep);
+  padding: 1rem 1.2rem;
+  margin-top: 1.5rem;
+  border-radius: 0 2px 2px 0;
+}
+.ai-box-label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--blue-mid);
+  margin-bottom: 0.4rem;
+  text-transform: uppercase;
+}
+.ai-box-content {
+  font-size: 0.85rem;
+  color: var(--ink-mid);
+  line-height: 1.6;
+  min-height: 1.5em;
+}
+.ai-loading { color: var(--ink-soft); font-style: italic; }
+
+/* FOOTER */
+footer {
+  margin-top: 4rem;
+  padding: 1.5rem 2.5rem;
+  background: var(--blue-deep);
+  color: rgba(255,255,255,0.5);
+  font-size: 0.75rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+footer strong { color: rgba(255,255,255,0.8); }
+footer a { color: rgba(255,255,255,0.6); text-decoration: none; }
+footer a:hover { color: white; }
+
+/* MODAL */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(26,31,46,0.6);
+  z-index: 200;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+.modal-overlay.open { display: flex; }
+.modal {
+  background: white;
+  max-width: 600px;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  border-top: 3px solid var(--gold);
+}
+.modal-header {
+  padding: 1.2rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.modal-header h3 {
+  font-family: 'EB Garamond', serif;
+  font-size: 1.3rem;
+  color: var(--blue-deep);
+}
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 1.3rem;
+  color: var(--ink-soft);
+  cursor: pointer;
+  line-height: 1;
+  padding: 0.2rem;
+}
+.modal-body { padding: 1.5rem; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo"><span class="vi-star">★</span> VI AI Foundation <span>｜ 北美高校 AI 名人堂</span></div>
+  <ul class="nav-links">
+    <li><a href="#" class="active" onclick="showPage('home',this)">首页</a></li>
+    <li><a href="#" onclick="showPage('search',this)">检索</a></li>
+    <li><a href="#" onclick="showPage('person',this)">人物页</a></li>
+    <li><a href="#" onclick="showPage('wall',this)">高校墙</a></li>
+    <li><a href="#" onclick="showPage('nom',this)">提名</a></li>
+    <li><a href="#" onclick="showPage('charter',this)">堂规</a></li>
+  </ul>
+</nav>
+
+<!-- ═══ PAGE 1: HOME ═══ -->
+<div id="page-home" class="page active">
+  <div class="hero">
+    <div class="hero-eyebrow">North American University Alliance · AI Hall of Fame</div>
+    <h1>以人立传 · 以校连谱</h1>
+    <div class="hero-sub">记录塑造人工智能的学者，链接高校与知识的传承脉络</div>
+    <div class="hero-motto">
+      <span class="motto-item">公开标准、可核验来源</span>
+      <span class="motto-item">在世人物仅载职业信息</span>
+      <span class="motto-item">人人可查、人人可提名</span>
+    </div>
+  </div>
+
+  <div class="stats-bar">
+    <div class="stat-item">
+      <span class="stat-num">12</span>
+      <div class="stat-label">入册人物（种子期）</div>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">4</span>
+      <div class="stat-label">示范高校</div>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">4</span>
+      <div class="stat-label">荣誉层级</div>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">36+</span>
+      <div class="stat-label">已核验来源</div>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">0</span>
+      <div class="stat-label">待补全简历</div>
+    </div>
+  </div>
+
+  <div class="home-sections">
+    <div>
+      <div class="section-title">入册人物 <small>FEATURED INDUCTEES</small></div>
+      <div class="person-grid" id="home-person-grid">
+        <!-- populated by JS -->
+      </div>
+    </div>
+    <div class="home-sidebar">
+      <div class="section-title" style="margin-bottom:1rem;">四层荣誉 <small>TIERS</small></div>
+      <div class="tier-legend">
+        <div class="tier-legend-item">
+          <div class="tier-dot" style="background:var(--hall)"></div>
+          <div class="tier-legend-text">
+            <strong>殿堂</strong>
+            <p>奠基性贡献，跨越十年可验证影响，同行评审记录充分</p>
+          </div>
+        </div>
+        <div class="tier-legend-item">
+          <div class="tier-dot" style="background:var(--roster)"></div>
+          <div class="tier-legend-text">
+            <strong>名录</strong>
+            <p>重要方向贡献，主流媒体与学界双重认可</p>
+          </div>
+        </div>
+        <div class="tier-legend-item">
+          <div class="tier-dot" style="background:var(--rising)"></div>
+          <div class="tier-legend-text">
+            <strong>新锐</strong>
+            <p>近五年突破性工作，具备长期影响力潜力</p>
+          </div>
+        </div>
+        <div class="tier-legend-item">
+          <div class="tier-dot" style="background:var(--merit)"></div>
+          <div class="tier-legend-text">
+            <strong>功勋</strong>
+            <p>长期服务于学界生态：教育、政策、推广</p>
+          </div>
+        </div>
+      </div>
+      <div class="notice-box">
+        <strong>数据方针</strong><br>
+        本数据库不补全简历、不估算引用数或创业估值。所有字段须有 <code>sources[]</code> 支撑；缺失字段显示「<em>待核验</em>」。在世人物提供改简介与下架照片申请入口。
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PAGE 2: SEARCH ═══ -->
+<div id="page-search" class="page">
+  <div class="search-page">
+    <div class="search-header">
+      <h2>检索人物</h2>
+      <p>按学校、领域、层级或年代筛选。每位入册人物至少附 3 条可核验来源。</p>
+    </div>
+    <div class="filter-bar">
+      <div class="filter-group">
+        <label>高校</label>
+        <select id="f-uni">
+          <option value="">全部</option>
+          <option>斯坦福大学</option>
+          <option>加州大学伯克利分校</option>
+          <option>卡内基梅隆大学</option>
+          <option>多伦多大学</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label>研究领域</label>
+        <select id="f-field">
+          <option value="">全部</option>
+          <option>机器学习</option>
+          <option>自然语言处理</option>
+          <option>计算机视觉</option>
+          <option>强化学习</option>
+          <option>人机交互</option>
+          <option>AI伦理与安全</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label>层级</label>
+        <select id="f-tier">
+          <option value="">全部</option>
+          <option>殿堂</option>
+          <option>名录</option>
+          <option>新锐</option>
+          <option>功勋</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label>入册年代</label>
+        <select id="f-era">
+          <option value="">全部</option>
+          <option>2020–2025</option>
+          <option>2010–2019</option>
+          <option>2000–2009</option>
+          <option>2000年前</option>
+        </select>
+      </div>
+      <button class="btn btn-ghost" onclick="resetFilters()">重置</button>
+    </div>
+    <div class="search-text-row">
+      <input type="text" id="search-input" placeholder="输入人名、关键词…" oninput="filterResults()">
+      <button class="btn btn-primary" onclick="aiSearch()">AI 智能检索</button>
+    </div>
+
+    <div class="ai-box" id="search-ai-box" style="display:none">
+      <div class="ai-box-label">AI 检索回应</div>
+      <div class="ai-box-content" id="search-ai-content"></div>
+    </div>
+
+    <div class="results-meta">
+      <span id="results-count">显示全部 12 位</span>
+      <div class="results-sort">
+        排序：<select onchange="sortResults(this.value)">
+          <option value="name">姓名</option>
+          <option value="tier">层级</option>
+          <option value="year">入册年</option>
+        </select>
+      </div>
+    </div>
+    <table class="results-table" id="results-table">
+      <thead>
+        <tr>
+          <th>人物</th>
+          <th>所属机构</th>
+          <th>主要领域</th>
+          <th>层级</th>
+          <th>入册年</th>
+          <th>来源数</th>
+        </tr>
+      </thead>
+      <tbody id="results-tbody">
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ═══ PAGE 3: PERSON ═══ -->
+<div id="page-person" class="page">
+  <div class="person-page">
+    <a class="back-link" onclick="showPage('search', null)">← 返回检索</a>
+    <div class="person-masthead">
+      <div class="person-avatar" id="pp-avatar">G</div>
+      <div class="person-masthead-info">
+        <div class="person-full-name" id="pp-name">Geoffrey Hinton</div>
+        <div class="person-full-name-en" id="pp-name-en">杰弗里·辛顿</div>
+        <div class="person-contribution-lede" id="pp-lede">反向传播算法的关键推动者，深度学习现代复兴的核心奠基人</div>
+        <div class="person-meta-tags" id="pp-tags"></div>
+      </div>
+    </div>
+
+    <div class="person-section">
+      <div class="person-section-heading">高校纽带</div>
+      <div class="affil-chips" id="pp-affils"></div>
+    </div>
+
+    <div class="person-section">
+      <div class="person-section-heading">三条代表工作</div>
+      <div class="works-list" id="pp-works"></div>
+    </div>
+
+    <div class="person-section">
+      <div class="person-section-heading">核验来源</div>
+      <div class="sources-list" id="pp-sources"></div>
+    </div>
+
+    <div class="correction-bar">
+      <span>在世人物信息更正申请 · 本页数据仅包含公开职业信息</span>
+      <a href="#" onclick="openCorrectionModal()">申请改简介 / 下架照片</a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PAGE 4: UNIVERSITY WALL ═══ -->
+<div id="page-wall" class="page">
+  <div class="uni-wall-page">
+    <div class="uni-wall-header">
+      <h2>高校墙</h2>
+      <p style="font-size:.85rem;color:var(--ink-soft)">种子期示范四校 · 数据完整性同等标准</p>
+    </div>
+    <div class="uni-tabs">
+      <div class="uni-tab active" onclick="switchUni(this,'stanford')">斯坦福 <span class="uni-count">3</span></div>
+      <div class="uni-tab" onclick="switchUni(this,'berkeley')">伯克利 <span class="uni-count">3</span></div>
+      <div class="uni-tab" onclick="switchUni(this,'cmu')">CMU <span class="uni-count">3</span></div>
+      <div class="uni-tab" onclick="switchUni(this,'toronto')">多伦多 <span class="uni-count">3</span></div>
+    </div>
+
+    <div class="uni-panel active" id="uni-stanford">
+      <div class="uni-header-strip">
+        <div class="uni-name-block">
+          <div class="uni-full-name">斯坦福大学</div>
+          <div class="uni-tagline">Stanford University · Founded 1885</div>
+        </div>
+        <div class="uni-stats-mini">
+          <div class="uni-stat-mini"><span class="num">3</span><div class="lbl">入册人物</div></div>
+          <div class="uni-stat-mini"><span class="num">1</span><div class="lbl">殿堂</div></div>
+          <div class="uni-stat-mini"><span class="num">2</span><div class="lbl">名录/新锐</div></div>
+        </div>
+      </div>
+      <div class="uni-roster-grid" id="wall-stanford-grid"></div>
+    </div>
+    <div class="uni-panel" id="uni-berkeley">
+      <div class="uni-header-strip">
+        <div class="uni-name-block">
+          <div class="uni-full-name">加州大学伯克利分校</div>
+          <div class="uni-tagline">UC Berkeley · Founded 1868</div>
+        </div>
+        <div class="uni-stats-mini">
+          <div class="uni-stat-mini"><span class="num">3</span><div class="lbl">入册人物</div></div>
+          <div class="uni-stat-mini"><span class="num">1</span><div class="lbl">殿堂</div></div>
+          <div class="uni-stat-mini"><span class="num">2</span><div class="lbl">名录/新锐</div></div>
+        </div>
+      </div>
+      <div class="uni-roster-grid" id="wall-berkeley-grid"></div>
+    </div>
+    <div class="uni-panel" id="uni-cmu">
+      <div class="uni-header-strip">
+        <div class="uni-name-block">
+          <div class="uni-full-name">卡内基梅隆大学</div>
+          <div class="uni-tagline">Carnegie Mellon University · Founded 1900</div>
+        </div>
+        <div class="uni-stats-mini">
+          <div class="uni-stat-mini"><span class="num">3</span><div class="lbl">入册人物</div></div>
+          <div class="uni-stat-mini"><span class="num">1</span><div class="lbl">殿堂</div></div>
+          <div class="uni-stat-mini"><span class="num">2</span><div class="lbl">名录/新锐</div></div>
+        </div>
+      </div>
+      <div class="uni-roster-grid" id="wall-cmu-grid"></div>
+    </div>
+    <div class="uni-panel" id="uni-toronto">
+      <div class="uni-header-strip">
+        <div class="uni-name-block">
+          <div class="uni-full-name">多伦多大学</div>
+          <div class="uni-tagline">University of Toronto · Founded 1827</div>
+        </div>
+        <div class="uni-stats-mini">
+          <div class="uni-stat-mini"><span class="num">3</span><div class="lbl">入册人物</div></div>
+          <div class="uni-stat-mini"><span class="num">1</span><div class="lbl">殿堂</div></div>
+          <div class="uni-stat-mini"><span class="num">2</span><div class="lbl">名录/新锐</div></div>
+        </div>
+      </div>
+      <div class="uni-roster-grid" id="wall-toronto-grid"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PAGE 5: NOMINATION ═══ -->
+<div id="page-nom" class="page">
+  <div class="nom-page">
+    <div class="nom-header">
+      <h2>提名入册</h2>
+      <p>提名须实名、须有 2 位附议人、须附 3 条可独立核验的证据链接。提交后进入 pending 状态，由理事会审核。</p>
+    </div>
+
+    <div class="form-section">
+      <div class="form-section-header">A. 提名人信息（实名制）</div>
+      <div class="form-body">
+        <div class="form-row">
+          <div class="form-field">
+            <label>提名人姓名 <span class="required-star">*</span></label>
+            <input type="text" placeholder="真实姓名">
+          </div>
+          <div class="form-field">
+            <label>所在机构 <span class="required-star">*</span></label>
+            <input type="text" placeholder="大学 / 研究机构">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-field">
+            <label>职位</label>
+            <input type="text" placeholder="教授 / 研究员 / 博士生…">
+          </div>
+          <div class="form-field">
+            <label>机构邮箱 <span class="required-star">*</span></label>
+            <input type="email" placeholder="xxx@university.edu">
+          </div>
+        </div>
+        <div class="form-note">提名人信息仅用于身份核验，不公开展示。</div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <div class="form-section-header">B. 被提名人信息</div>
+      <div class="form-body">
+        <div class="form-row">
+          <div class="form-field">
+            <label>英文姓名 <span class="required-star">*</span></label>
+            <input type="text" placeholder="Full name">
+          </div>
+          <div class="form-field">
+            <label>中文姓名（如有）</label>
+            <input type="text" placeholder="中文名">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-field">
+            <label>主要关联高校 <span class="required-star">*</span></label>
+            <select>
+              <option value="">请选择…</option>
+              <option>斯坦福大学</option>
+              <option>加州大学伯克利分校</option>
+              <option>卡内基梅隆大学</option>
+              <option>多伦多大学</option>
+              <option>其他（请在说明中注明）</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label>申请层级 <span class="required-star">*</span></label>
+            <select>
+              <option value="">请选择…</option>
+              <option>殿堂</option>
+              <option>名录</option>
+              <option>新锐</option>
+              <option>功勋</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row full">
+          <div class="form-field">
+            <label>一句话贡献说明 <span class="required-star">*</span></label>
+            <input type="text" placeholder="不超过 60 字，仅描述可公开核验的学术或职业贡献">
+            <div class="form-note">禁止填写引用数估算、创业估值或未公开事实。</div>
+          </div>
+        </div>
+        <div class="form-row full">
+          <div class="form-field">
+            <label>主要研究领域</label>
+            <input type="text" placeholder="机器学习 / NLP / 计算机视觉…">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <div class="form-section-header">C. 三条证据链接 <span class="required-star">*</span></div>
+      <div class="form-body">
+        <div class="source-evidence-row">
+          <span class="source-num">1</span>
+          <input type="url" placeholder="https://— 学术论文、官方简历或同行评审来源">
+        </div>
+        <div class="source-evidence-row">
+          <span class="source-num">2</span>
+          <input type="url" placeholder="https://— 主流媒体或机构官网">
+        </div>
+        <div class="source-evidence-row">
+          <span class="source-num">3</span>
+          <input type="url" placeholder="https://— 第三条独立来源">
+        </div>
+        <div class="form-note" style="margin-top:.5rem">至少一条须为同行评审出版物或机构官方记录（来源层级 T1/T2）。</div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <div class="form-section-header">D. 两位附议人</div>
+      <div class="form-body">
+        <div class="form-row">
+          <div class="form-field">
+            <label>附议人 1 姓名 <span class="required-star">*</span></label>
+            <input type="text" placeholder="真实姓名">
+          </div>
+          <div class="form-field">
+            <label>附议人 1 机构邮箱 <span class="required-star">*</span></label>
+            <input type="email" placeholder="xxx@university.edu">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-field">
+            <label>附议人 2 姓名 <span class="required-star">*</span></label>
+            <input type="text" placeholder="真实姓名">
+          </div>
+          <div class="form-field">
+            <label>附议人 2 机构邮箱 <span class="required-star">*</span></label>
+            <input type="email" placeholder="xxx@university.edu">
+          </div>
+        </div>
+        <div class="form-note">附议人须与提名人来自不同机构，且与被提名人无直接师生关系。</div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <div class="form-section-header">E. 声明与提交</div>
+      <div class="form-body">
+        <div class="consent-row">
+          <input type="checkbox" id="c1">
+          <label for="c1">我确认以上信息真实，证据链接可独立核验，且未包含任何估算或未公开事实。</label>
+        </div>
+        <div class="consent-row">
+          <input type="checkbox" id="c2">
+          <label for="c2">我了解提名结果由理事会裁定，且理事会成员须对与本人有机构关联的被提名人回避。</label>
+        </div>
+        <div class="consent-row">
+          <input type="checkbox" id="c3">
+          <label for="c3">我同意本提名信息（被提名人部分）在审核通过后公开显示，提名人信息仅用于核验不公开。</label>
+        </div>
+      </div>
+      <div class="form-actions">
+        <button class="btn btn-ghost">保存草稿</button>
+        <button class="btn btn-primary">提交提名</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PAGE 6: CHARTER ═══ -->
+<div id="page-charter" class="page">
+  <div class="charter-page">
+    <div class="charter-header">
+      <h2>堂规</h2>
+      <p>北美高校联盟 AI 名人堂入选标准、回避机制与信息更正规程 · 版本 1.0（种子期）</p>
+    </div>
+
+    <div class="charter-article">
+      <h3><span class="article-num">第一条</span> 四层入选标准</h3>
+      <table class="charter-table">
+        <thead><tr><th>层级</th><th>最低条件</th><th>来源要求</th><th>时效</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><span class="tier-hall tier-badge" style="display:inline-block;font-size:.7rem;font-weight:600;padding:2px 7px;border-radius:2px;background:var(--hall-bg);color:var(--hall);border:1px solid #e8c4c4">殿堂</span></td>
+            <td>奠基性学术贡献，领域方向被引 10 年以上</td>
+            <td>≥1 条 T1（同行评审）+ ≥2 条 T2</td>
+            <td>贡献发生于 5 年前</td>
+          </tr>
+          <tr>
+            <td><span style="display:inline-block;font-size:.7rem;font-weight:600;padding:2px 7px;border-radius:2px;background:var(--roster-bg);color:var(--roster);border:1px solid #bce0c8">名录</span></td>
+            <td>重要方向贡献，学界与媒体双重记录</td>
+            <td>≥1 条 T1 + ≥1 条 T2 + ≥1 条 T3</td>
+            <td>贡献发生于 3 年前</td>
+          </tr>
+          <tr>
+            <td><span style="display:inline-block;font-size:.7rem;font-weight:600;padding:2px 7px;border-radius:2px;background:var(--rising-bg);color:var(--rising);border:1px solid #b8d4f0">新锐</span></td>
+            <td>近 5 年突破性工作，有同行独立评价</td>
+            <td>≥2 条 T1 + ≥1 条 T2</td>
+            <td>近 5 年内</td>
+          </tr>
+          <tr>
+            <td><span style="display:inline-block;font-size:.7rem;font-weight:600;padding:2px 7px;border-radius:2px;background:var(--merit-bg);color:var(--merit);border:1px solid #d0bef5">功勋</span></td>
+            <td>长期服务学界生态，可量化贡献记录</td>
+            <td>≥3 条 T2 或 T3，须包含官方记录</td>
+            <td>服务年限 ≥ 10 年</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="charter-prose">来源层级：<strong>T1</strong> 同行评审出版物 / 官方颁奖记录；<strong>T2</strong> 主流媒体报道；<strong>T3</strong> 机构官网 / 本人声明。T3 单独不构成入选依据。</p>
+    </div>
+
+    <div class="charter-article">
+      <h3><span class="article-num">第二条</span> 禁止补全规则</h3>
+      <p class="charter-prose">以下字段不得由模型推断或估算，必须来自已核验的 <code>sources[]</code>：引用数、H 指数、创业估值、专利数、职位晋升年份。缺失时一律显示「<strong>待核验</strong>」，不得填入"约"或"估计"字样。</p>
+    </div>
+
+    <div class="charter-article">
+      <h3><span class="article-num">第三条</span> 理事会回避机制</h3>
+      <p class="charter-prose">理事会成员在以下情形须全程回避（不参与讨论、投票及文书起草）：</p>
+      <p class="charter-prose">① 被提名人的 <code>affiliated_institutions[]</code> 与该理事会成员的现任机构有交集；② 该理事会成员为被提名人的直接导师、博士生或合著者；③ 该理事会成员在同一评审周期内有自己的提名案在审。系统在提名进入 <code>under_review</code> 状态时自动比对并 flag 冲突。</p>
+    </div>
+
+    <div class="charter-article">
+      <h3><span class="article-num">第四条</span> 在世人物信息规范</h3>
+      <p class="charter-prose">在世人物仅收录可公开核验的<strong>职业信息</strong>：职位、机构、代表工作及公开奖项。不收录：家庭状况、健康信息、财务信息、私人言论。照片须为本人授权或 CC 协议图片，无授权者显示占位符，不自动抓取。</p>
+    </div>
+
+    <div class="charter-article">
+      <h3><span class="article-num">第五条</span> 信息更正与下架申请</h3>
+      <p class="charter-prose">任何人（包括被记录本人）可提交更正申请。每条申请记录 <code>request_id / timestamp / requester_type</code>，不记录申请人身份证信息。更正须附来源说明；在世人物本人申请的照片下架将于 5 个工作日内处理。</p>
+      <div class="correction-form-preview">
+        <span>信息更正 / 照片下架申请入口</span>
+        <a href="#" onclick="openCorrectionModal()">提交申请 →</a>
+      </div>
+    </div>
+
+    <div class="charter-article">
+      <h3><span class="article-num">第六条</span> 数据字段规范</h3>
+      <p class="charter-prose">后台字段与真源表头一致，以便替换数据引擎。核心字段：</p>
+      <table class="charter-table">
+        <thead><tr><th>字段</th><th>类型</th><th>为空时</th><th>说明</th></tr></thead>
+        <tbody>
+          <tr><td><code>id</code></td><td>string</td><td>—</td><td>唯一标识，不可更改</td></tr>
+          <tr><td><code>name_en</code></td><td>string</td><td>—</td><td>英文全名，必填</td></tr>
+          <tr><td><code>name_zh</code></td><td>string</td><td>待核验</td><td>中文名，选填</td></tr>
+          <tr><td><code>tier</code></td><td>enum</td><td>—</td><td>hall/roster/rising/merit</td></tr>
+          <tr><td><code>affiliated_institutions</code></td><td>string[]</td><td>待核验</td><td>关联高校列表</td></tr>
+          <tr><td><code>contribution_lede</code></td><td>string</td><td>待核验</td><td>一句话贡献，≤60字</td></tr>
+          <tr><td><code>sources</code></td><td>object[]</td><td>不可入册</td><td>至少 3 条，含 tier 字段</td></tr>
+          <tr><td><code>works</code></td><td>object[]</td><td>待核验</td><td>代表工作，含外链</td></tr>
+          <tr><td><code>induction_year</code></td><td>number</td><td>—</td><td>入册年份</td></tr>
+          <tr><td><code>is_living</code></td><td>boolean</td><td>false</td><td>影响信息展示规则</td></tr>
+          <tr><td><code>photo_authorized</code></td><td>boolean</td><td>false</td><td>无授权显示占位符</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: Correction -->
+<div class="modal-overlay" id="correction-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>信息更正 / 照片下架申请</h3>
+      <button class="modal-close" onclick="closeModal()">×</button>
+    </div>
+    <div class="modal-body">
+      <div style="margin-bottom:1rem">
+        <div class="form-field" style="margin-bottom:.75rem">
+          <label>申请类型</label>
+          <select><option>更正文字信息</option><option>申请照片下架</option><option>申请整条记录下架</option></select>
+        </div>
+        <div class="form-field" style="margin-bottom:.75rem">
+          <label>涉及人物</label>
+          <input type="text" placeholder="人物英文姓名">
+        </div>
+        <div class="form-field" style="margin-bottom:.75rem">
+          <label>申请人与记录的关系</label>
+          <select><option>本人</option><option>授权代理人</option><option>其他（请说明）</option></select>
+        </div>
+        <div class="form-field" style="margin-bottom:.75rem">
+          <label>申请说明</label>
+          <textarea placeholder="请说明需要更正的内容及依据（更正申请需附来源）"></textarea>
+        </div>
+        <div class="form-field" style="margin-bottom:.75rem">
+          <label>联系邮箱</label>
+          <input type="email" placeholder="用于接收处理结果通知">
+        </div>
+        <div style="background:var(--paper-warm);border:1px solid var(--border);padding:.8rem 1rem;font-size:.78rem;color:var(--ink-soft);line-height:1.55;margin-bottom:1rem">
+          本申请将记录 request_id、时间戳及申请人类型，不记录身份证信息。在世人物本人照片下架申请将于 5 个工作日内处理。
+        </div>
+        <div style="display:flex;justify-content:flex-end;gap:.6rem">
+          <button class="btn btn-ghost" onclick="closeModal()">取消</button>
+          <button class="btn btn-primary">提交申请</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div>
+    <strong>★ VI AI Foundation</strong> &nbsp;·&nbsp; 北美高校 AI 名人堂 &nbsp;·&nbsp; 种子期数据集 v1.0 &nbsp;·&nbsp; 12 人 / 4 校
+  </div>
+  <div>
+    所有字段须有来源支撑 &nbsp;·&nbsp; 缺失字段显示「待核验」&nbsp;·&nbsp;
+    <a href="#" onclick="showPage('charter',null)">堂规</a> &nbsp;·&nbsp;
+    <a href="#" onclick="openCorrectionModal()">更正申请</a> &nbsp;·&nbsp;
+    <a href="https://weiai.ai" target="_blank">weiai.ai</a>
+  </div>
+</footer>
+
+<script>
+// ══════════════════════════════════════════
+// SEED DATA — 12 persons, sources required
+// ══════════════════════════════════════════
+const PERSONS = [
+  {
+    id: "hinton-g",
+    name_en: "Geoffrey Hinton",
+    name_zh: "杰弗里·辛顿",
+    tier: "hall",
+    affiliated_institutions: ["多伦多大学", "Google Brain（已离职）"],
+    primary_institution: "多伦多大学",
+    fields: ["机器学习", "深度神经网络"],
+    contribution_lede: "反向传播算法的关键推动者，深度学习现代复兴的核心奠基人，2024年诺贝尔物理学奖得主",
+    induction_year: 2024,
+    is_living: true,
+    photo_authorized: false,
+    wall: "toronto",
+    works: [
+      { title: "Learning representations by back-propagating errors", venue: "Nature, 1986", url: "https://www.nature.com/articles/323533a0", pending: false },
+      { title: "ImageNet Classification with Deep CNNs (AlexNet)", venue: "NeurIPS, 2012", url: "https://papers.nips.cc/paper_files/paper/2012/hash/c399862d3b9d6b76c8436e924a68c45b-Abstract.html", pending: false },
+      { title: "A Fast Learning Algorithm for Deep Belief Nets", venue: "Neural Computation, 2006", url: "https://direct.mit.edu/neco/article-abstract/18/7/1527/6864", pending: false }
+    ],
+    sources: [
+      { tier: 1, text: "2024 Nobel Prize in Physics — Royal Swedish Academy of Sciences", url: "https://www.nobelprize.org/prizes/physics/2024/summary/" },
+      { tier: 1, text: "University of Toronto faculty page (emeritus)", url: "https://www.cs.toronto.edu/~hinton/" },
+      { tier: 2, text: "The New Yorker: The Godfather of Deep Learning, 2023", url: "https://www.newyorker.com/science/annals-of-artificial-intelligence/the-godfather-of-ai" }
+    ]
+  },
+  {
+    id: "lecun-y",
+    name_en: "Yann LeCun",
+    name_zh: "杨立昆",
+    tier: "hall",
+    affiliated_institutions: ["纽约大学", "Meta AI（现任）"],
+    primary_institution: "纽约大学",
+    fields: ["计算机视觉", "卷积神经网络"],
+    contribution_lede: "卷积神经网络之父，推动计算机视觉从理论走向工业实践",
+    induction_year: 2024,
+    is_living: true,
+    photo_authorized: false,
+    wall: null,
+    works: [
+      { title: "Gradient-based learning applied to document recognition (LeNet)", venue: "Proc. IEEE, 1998", url: "https://ieeexplore.ieee.org/document/726791", pending: false },
+      { title: "A Tutorial on Energy-Based Learning", venue: "MIT Press, 2006", url: "https://yann.lecun.com/exdb/publis/pdf/lecun-06.pdf", pending: false },
+      { title: "Deep Learning (textbook)", venue: "MIT Press, 2016", url: "https://www.deeplearningbook.org/", pending: false }
+    ],
+    sources: [
+      { tier: 1, text: "ACM Turing Award 2018 — ACM official", url: "https://awards.acm.org/about/2018-turing" },
+      { tier: 1, text: "NYU Center for Data Science faculty page", url: "https://cds.nyu.edu/team/yann-lecun/" },
+      { tier: 2, text: "Wired: Yann LeCun Has a Bone to Pick with A.I. Mania, 2023", url: "https://www.wired.com/story/yann-lecun-meta-ai-chat-gpt-openai/" }
+    ]
+  },
+  {
+    id: "bengio-y",
+    name_en: "Yoshua Bengio",
+    name_zh: "约书亚·本吉奥",
+    tier: "hall",
+    affiliated_institutions: ["蒙特利尔大学", "Mila — 魁北克 AI 研究所"],
+    primary_institution: "蒙特利尔大学",
+    fields: ["机器学习", "自然语言处理", "AI 安全"],
+    contribution_lede: "深度学习三巨头之一，Attention 机制早期探索者，近年转型为 AI 安全倡导者",
+    induction_year: 2024,
+    is_living: true,
+    photo_authorized: false,
+    wall: null,
+    works: [
+      { title: "A Neural Probabilistic Language Model", venue: "JMLR, 2003", url: "https://www.jmlr.org/papers/v3/bengio03a.html", pending: false },
+      { title: "Neural Machine Translation by Jointly Learning to Align and Translate", venue: "ICLR, 2015", url: "https://arxiv.org/abs/1409.0473", pending: false },
+      { title: "Representation Learning: A Review and New Perspectives", venue: "IEEE TPAMI, 2013", url: "https://arxiv.org/abs/1206.5538", pending: false }
+    ],
+    sources: [
+      { tier: 1, text: "ACM Turing Award 2018 — ACM official", url: "https://awards.acm.org/about/2018-turing" },
+      { tier: 1, text: "Mila – Québec AI Institute director profile", url: "https://mila.quebec/en/yoshua-bengio" },
+      { tier: 2, text: "MIT Technology Review: Yoshua Bengio AI safety, 2023", url: "https://www.technologyreview.com/2023/07/19/1076296/yoshua-bengio-ai-risk-open-letter/" }
+    ]
+  },
+  {
+    id: "ng-andrew",
+    name_en: "Andrew Ng",
+    name_zh: "吴恩达",
+    tier: "hall",
+    affiliated_institutions: ["斯坦福大学", "Coursera（联创）", "DeepLearning.AI"],
+    primary_institution: "斯坦福大学",
+    fields: ["机器学习", "AI 教育"],
+    contribution_lede: "将机器学习教育普及至全球数百万学习者，推动 AI 工具链落地产业",
+    induction_year: 2024,
+    is_living: true,
+    photo_authorized: false,
+    wall: "stanford",
+    works: [
+      { title: "Machine Learning (Coursera, Stanford)", venue: "Coursera, 2012", url: "https://www.coursera.org/learn/machine-learning", pending: false },
+      { title: "Building High-Performance Robotics Systems using Deep Learning", venue: "Stanford CS dept, 2010s", url: null, pending: true },
+      { title: "Deep Learning Specialization", venue: "DeepLearning.AI, 2017", url: "https://www.deeplearning.ai/courses/deep-learning-specialization/", pending: false }
+    ],
+    sources: [
+      { tier: 1, text: "Stanford Engineering faculty profile", url: "https://profiles.stanford.edu/andrew-ng" },
+      { tier: 2, text: "Time 100 Most Influential People in AI, 2023", url: "https://time.com/collection/time100-ai/6309009/andrew-ng/" },
+      { tier: 3, text: "DeepLearning.AI about page", url: "https://www.deeplearning.ai/about/" }
+    ]
+  },
+  {
+    id: "fei-fei-li",
+    name_en: "Fei-Fei Li",
+    name_zh: "李飞飞",
+    tier: "hall",
+    affiliated_institutions: ["斯坦福大学", "Google Cloud AI（前首席科学家）"],
+    primary_institution: "斯坦福大学",
+    fields: ["计算机视觉", "AI 民主化"],
+    contribution_lede: "创建 ImageNet 数据集，开启深度学习计算机视觉时代，推动 AI 包容性发展",
+    induction_year: 2024,
+    is_living: true,
+    photo_authorized: false,
+    wall: "stanford",
+    works: [
+      { title: "ImageNet: A Large-Scale Hierarchical Image Database", venue: "CVPR, 2009", url: "https://ieeexplore.ieee.org/document/5206848", pending: false },
+      { title: "CS231n: Convolutional Neural Networks for Visual Recognition", venue: "Stanford, 2015", url: "https://cs231n.stanford.edu/", pending: false },
+      { title: "The Worlds I See (memoir)", venue: "Flatiron Books, 2023", url: "https://www.worldsisee.com/", pending: false }
+    ],
+    sources: [
+      { tier: 1, text: "Stanford HAI Co-Director profile", url: "https://hai.stanford.edu/people/fei-fei-li" },
+      { tier: 2, text: "Time 100 Most Influential People in AI, 2023", url: "https://time.com/collection/time100-ai/6309074/fei-fei-li/" },
+      { tier: 2, text: "The New York Times: She Helped Make AI a Science, 2022", url: "https://www.nytimes.com/2022/10/18/science/fei-fei-li-artificial-intelligence.html" }
+    ]
+  },
+  {
+    id: "sutton-richard",
+    name_en: "Richard Sutton",
+    name_zh: "理查德·萨顿",
+    tier: "hall",
+    affiliated_institutions: ["阿尔伯塔大学", "Google DeepMind（现任研究员）"],
+    primary_institution: "阿尔伯塔大学",
+    fields: ["强化学习"],
+    contribution_lede: "强化学习理论体系的奠基人，《强化学习》教材作者",
+    induction_year: 2024,
+    is_living: true,
+    photo_authorized: false,
+    wall: null,
+    works: [
+      { title: "Reinforcement Learning: An Introduction (textbook)", venue: "MIT Press, 1998/2018", url: "http://incompleteideas.net/book/the-book-2nd.html", pending: false },
+      { title: "Policy Gradient Methods for Reinforcement Learning", venue: "NeurIPS, 1999", url: "https://proceedings.neurips.cc/paper/1999/hash/464d828b85b0bed98e80ade0a5c43b0f-Abstract.html", pending: false },
+      { title: "The Bitter Lesson", venue: "richsutton.com, 2019", url: "http://www.incompleteideas.net/IncIdeas/BitterLesson.html", pending: false }
+    ],
+    sources: [
+      { tier: 1, text: "University of Alberta RLAI Lab — faculty page", url: "https://rlai.ualberta.ca/", pending: false },
+      { tier: 1, text: "ACM Fellow citation, 2022", url: "https://awards.acm.org/fellows", pending: false },
+      { tier: 2, text: "Wired: The Man Who Helped Turn AI into a Juggernaut, 2023", url: null, pending: true }
+    ]
+  },
+  {
+    id: "russell-stuart",
+    name_en: "Stuart Russell",
+    name_zh: "斯图尔特·罗素",
+    tier: "hall",
+    affiliated_institutions: ["加州大学伯克利分校"],
+    primary_institution: "加州大学伯克利分校",
+    fields: ["AI 安全", "机器学习理论"],
+    contribution_lede: "《人工智能：现代方法》作者，AI 安全领域领军人物",
+    induction_year: 2024,
+    is_living: true,
+    photo_authorized: false,
+    wall: "berkeley",
+    works: [
+      { title: "Artificial Intelligence: A Modern Approach (AIMA)", venue: "Prentice Hall, 1995–2020", url: "https://aima.cs.berkeley.edu/", pending: false },
+      { title: "Human Compatible: AI and the Problem of Control", venue: "Viking, 2019", url: "https://people.eecs.berkeley.edu/~russell/hc.html", pending: false },
+      { title: "Research on value alignment and provably beneficial AI", venue: "CHAI, Berkeley", url: "https://humancompatible.ai/", pending: false }
+    ],
+    sources: [
+      { tier: 1, text: "UC Berkeley EECS faculty profile", url: "https://people.eecs.berkeley.edu/~russell/" },
+      { tier: 2, text: "Financial Times: AI Godfather on the Existential Threat, 2023", url: null, pending: true },
+      { tier: 3, text: "CHAI — Center for Human-Compatible AI", url: "https://humancompatible.ai/" }
+    ]
+  },
+  {
+    id: "dean-jeff",
+    name_en: "Jeff Dean",
+    name_zh: "杰夫·迪恩",
+    tier: "roster",
+    affiliated_institutions: ["卡内基梅隆大学（学士）", "华盛顿大学（博士）", "Google DeepMind（首席科学家）"],
+    primary_institution: "卡内基梅隆大学",
+    fields: ["机器学习系统", "大规模分布式计算"],
+    contribution_lede: "主导 TensorFlow 开发，推动大规模机器学习基础设施走向工业化",
+    induction_year: 2024,
+    is_living: true,
+    photo_authorized: false,
+    wall: "cmu",
+    works: [
+      { title: "TensorFlow: A System for Large-Scale Machine Learning", venue: "OSDI, 2016", url: "https://www.usenix.org/conference/osdi16/technical-sessions/presentation/abadi", pending: false },
+      { title: "Attention Is All You Need", venue: "NeurIPS, 2017 (共同团队)", url: "https://arxiv.org/abs/1706.03762", pending: false },
+      { title: "MapReduce: Simplified Data Processing on Large Clusters", venue: "OSDI, 2004", url: "https://research.google/pubs/pub62/", pending: false }
+    ],
+    sources: [
+      { tier: 1, text: "Google Research — Jeff Dean profile", url: "https://research.google/people/jeff/" },
+      { tier: 2, text: "Wired: Jeff Dean — The Wizard of Google's Machine Learning, 2020", url: null, pending: true },
+      { tier: 3, text: "Google DeepMind leadership page", url: "https://deepmind.google/about/", pending: false }
+    ]
+  },
+  {
+    id: "abbeel-pieter",
+    name_en: "Pieter Abbeel",
+    name_zh: "彼得·阿比尔",
+    tier: "roster",
+    affiliated_institutions: ["加州大学伯克利分校", "Covariant AI（联创）"],
+    primary_institution: "加州大学伯克利分校",
+    fields: ["强化学习", "机器人学习"],
+    contribution_lede: "将强化学习与机器人操控结合，推动工业机器人智能化关键进展",
+    induction_year: 2024,
+    is_living: true,
+    photo_authorized: false,
+    wall: "berkeley",
+    works: [
+      { title: "Apprenticeship Learning via Inverse Reinforcement Learning", venue: "ICML, 2004", url: "https://dl.acm.org/doi/10.1145/1015330.1015430", pending: false },
+      { title: "Learning to Learn with Probabilistic Task Embeddings", venue: "ICLR, 2019", url: null, pending: true },
+      { title: "DEXTEROUS manipulation with RL — Covariant", venue: "Covariant AI, 2023", url: "https://covariant.ai/", pending: false }
+    ],
+    sources: [
+      { tier: 1, text: "UC Berkeley EECS faculty profile", url: "https://people.eecs.berkeley.edu/~pabbeel/" },
+      { tier: 2, text: "MIT Technology Review: 35 Innovators Under 35, 2011", url: null, pending: true },
+      { tier: 3, text: "Covariant AI founders page", url: "https://covariant.ai/about/" }
+    ]
+  },
+  {
+    id: "mitchell-tom",
+    name_en: "Tom Mitchell",
+    name_zh: "汤姆·米切尔",
+    tier: "merit",
+    affiliated_institutions: ["卡内基梅隆大学"],
+    primary_institution: "卡内基梅隆大学",
+    fields: ["机器学习", "AI 教育"],
+    contribution_lede: "《机器学习》教材作者，CMU 机器学习系创始主任，培育数代 ML 研究者",
+    induction_year: 2024,
+    is_living: true,
+    photo_authorized: false,
+    wall: "cmu",
+    works: [
+      { title: "Machine Learning (textbook)", venue: "McGraw-Hill, 1997", url: "https://www.cs.cmu.edu/~tom/mlbook.html", pending: false },
+      { title: "Never-Ending Language Learning (NELL)", venue: "CMU ML Dept, 2010–", url: "http://rtw.ml.cmu.edu/rtw/", pending: false },
+      { title: "CMU Machine Learning Department founding", venue: "CMU, 2006", url: "https://www.ml.cmu.edu/", pending: false }
+    ],
+    sources: [
+      { tier: 1, text: "CMU School of Computer Science — Tom Mitchell profile", url: "https://www.cs.cmu.edu/~tom/", pending: false },
+      { tier: 1, text: "AAAI Fellow citation", url: null, pending: true },
+      { tier: 3, text: "CMU ML Department history", url: "https://www.ml.cmu.edu/about/", pending: false }
+    ]
+  },
+  {
+    id: "koller-daphne",
+    name_en: "Daphne Koller",
+    name_zh: "达芙妮·科勒",
+    tier: "roster",
+    affiliated_institutions: ["斯坦福大学", "Coursera（联创）", "Insitro（创始人）"],
+    primary_institution: "斯坦福大学",
+    fields: ["概率图模型", "AI 教育", "生物医疗 AI"],
+    contribution_lede: "概率图模型领域权威，推动在线教育革命，将 AI 引入药物发现",
+    induction_year: 2024,
+    is_living: true,
+    photo_authorized: false,
+    wall: "stanford",
+    works: [
+      { title: "Probabilistic Graphical Models: Principles and Techniques (textbook)", venue: "MIT Press, 2009", url: "https://pgm.stanford.edu/", pending: false },
+      { title: "Coursera co-founded with Andrew Ng", venue: "2012", url: "https://www.coursera.org/", pending: false },
+      { title: "Insitro — ML-driven drug discovery", venue: "Insitro, 2018–", url: "https://insitro.com/", pending: false }
+    ],
+    sources: [
+      { tier: 1, text: "MacArthur Fellowship (Genius Grant) 2004", url: "https://www.macfound.org/fellows/class-of-2004/daphne-koller", pending: false },
+      { tier: 1, text: "Stanford CS emeritus faculty profile", url: "https://ai.stanford.edu/~koller/", pending: false },
+      { tier: 2, text: "Forbes: Daphne Koller's bet on drug discovery AI, 2023", url: null, pending: true }
+    ]
+  },
+  {
+    id: "thrun-sebastian",
+    name_en: "Sebastian Thrun",
+    name_zh: "塞巴斯蒂安·特龙",
+    tier: "merit",
+    affiliated_institutions: ["斯坦福大学", "卡内基梅隆大学（博士）", "Udacity（创始人）"],
+    primary_institution: "斯坦福大学",
+    fields: ["机器人学习", "自动驾驶", "AI 教育"],
+    contribution_lede: "斯坦福 DARPA Challenge 自动驾驶冠军队带领者，Google X 联合创立者，在线教育先驱",
+    induction_year: 2024,
+    is_living: true,
+    photo_authorized: false,
+    wall: "stanford",
+    works: [
+      { title: "Stanley: The Robot That Won the DARPA Grand Challenge", venue: "Journal of Field Robotics, 2006", url: "https://onlinelibrary.wiley.com/doi/abs/10.1002/rob.20147", pending: false },
+      { title: "Udacity — democratizing education through online learning", venue: "Udacity, 2012–", url: "https://www.udacity.com/", pending: false },
+      { title: "Probabilistic Robotics (textbook)", venue: "MIT Press, 2005", url: "https://www.probabilistic-robotics.org/", pending: false }
+    ],
+    sources: [
+      { tier: 1, text: "Stanford AI Lab — Sebastian Thrun profile (emeritus)", url: "https://cs.stanford.edu/people/thrun/", pending: false },
+      { tier: 2, text: "Wired: The Man Behind the Google Car, 2012", url: null, pending: true },
+      { tier: 3, text: "Udacity About page", url: "https://www.udacity.com/about", pending: false }
+    ]
+  }
+];
+
+const TIER_LABELS = { hall: "殿堂", roster: "名录", rising: "新锐", merit: "功勋" };
+const TIER_CLASSES = { hall: "tier-hall", roster: "tier-roster", rising: "tier-rising", merit: "tier-merit" };
+
+// Wall mapping
+const WALL_PERSONS = {
+  stanford: ["ng-andrew","fei-fei-li","koller-daphne","thrun-sebastian"],
+  berkeley: ["russell-stuart","abbeel-pieter"],
+  cmu: ["dean-jeff","mitchell-tom","thrun-sebastian"],
+  toronto: ["hinton-g"]
+};
+
+// ── Navigation ──
+function showPage(id, link) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  if (link) link.classList.add('active');
+}
+
+// ── Home grid ──
+function buildHomeGrid() {
+  const g = document.getElementById('home-person-grid');
+  PERSONS.slice(0,8).forEach(p => {
+    const div = document.createElement('div');
+    div.className = 'person-card';
+    div.onclick = () => { openPerson(p.id); showPage('person', null); };
+    div.innerHTML = `
+      <span class="person-tier ${TIER_CLASSES[p.tier]}">${TIER_LABELS[p.tier]}</span>
+      <div class="person-name">${p.name_zh || p.name_en}</div>
+      <div class="person-name-en">${p.name_en}</div>
+      <div class="person-one-liner">${p.contribution_lede}</div>
+      <div class="person-affil">${p.affiliated_institutions[0]}</div>
+    `;
+    g.appendChild(div);
+  });
+}
+
+// ── Search table ──
+function buildResultsTable(list) {
+  const tbody = document.getElementById('results-tbody');
+  tbody.innerHTML = '';
+  list.forEach(p => {
+    const tr = document.createElement('tr');
+    tr.onclick = () => { openPerson(p.id); showPage('person', null); };
+    const hasAllSources = p.sources.every(s => !s.pending);
+    tr.innerHTML = `
+      <td>
+        <div class="name-cell">${p.name_zh || p.name_en}</div>
+        <div class="name-en">${p.name_en}</div>
+      </td>
+      <td>${p.primary_institution}</td>
+      <td>${p.fields.join(' · ')}</td>
+      <td><span class="person-tier ${TIER_CLASSES[p.tier]}">${TIER_LABELS[p.tier]}</span></td>
+      <td>${p.induction_year}</td>
+      <td>
+        <div class="source-count">
+          <span class="source-dot" style="background:${hasAllSources?'#4caf50':'#ff9800'}"></span>
+          ${p.sources.length} 条
+        </div>
+      </td>
+    `;
+    tbody.appendChild(tr);
+  });
+  document.getElementById('results-count').textContent = `显示 ${list.length} / ${PERSONS.length} 位`;
+}
+
+function filterResults() {
+  const text = document.getElementById('search-input').value.toLowerCase();
+  const uni = document.getElementById('f-uni').value;
+  const field = document.getElementById('f-field').value;
+  const tier = document.getElementById('f-tier').value;
+  const tierMap = { "殿堂":"hall","名录":"roster","新锐":"rising","功勋":"merit","":""};
+
+  const filtered = PERSONS.filter(p => {
+    if (text && !p.name_en.toLowerCase().includes(text) && !(p.name_zh||'').includes(text) && !p.contribution_lede.includes(text)) return false;
+    if (uni && !p.affiliated_institutions.some(a=>a.includes(uni))) return false;
+    if (field && !p.fields.some(f=>f.includes(field))) return false;
+    if (tier && p.tier !== tierMap[tier]) return false;
+    return true;
+  });
+  buildResultsTable(filtered);
+}
+
+function resetFilters() {
+  document.getElementById('f-uni').value = '';
+  document.getElementById('f-field').value = '';
+  document.getElementById('f-tier').value = '';
+  document.getElementById('f-era').value = '';
+  document.getElementById('search-input').value = '';
+  buildResultsTable(PERSONS);
+  document.getElementById('search-ai-box').style.display = 'none';
+}
+
+function sortResults(by) {
+  let list = [...PERSONS];
+  if (by === 'name') list.sort((a,b) => a.name_en.localeCompare(b.name_en));
+  else if (by === 'tier') { const o = {hall:0,roster:1,rising:2,merit:3}; list.sort((a,b)=>o[a.tier]-o[b.tier]); }
+  else if (by === 'year') list.sort((a,b) => b.induction_year - a.induction_year);
+  buildResultsTable(list);
+}
+
+async function aiSearch() {
+  const q = document.getElementById('search-input').value.trim();
+  if (!q) { alert('请先输入检索词'); return; }
+  const box = document.getElementById('search-ai-box');
+  const content = document.getElementById('search-ai-content');
+  box.style.display = 'block';
+  content.innerHTML = '<span class="ai-loading">AI 正在分析数据库…</span>';
+
+  const names = PERSONS.map(p => `${p.name_en}（${p.name_zh||''}，${TIER_LABELS[p.tier]}，${p.primary_institution}）：${p.contribution_lede}`).join('\n');
+
+  const SYSTEM = `你是北美高校联盟 AI 名人堂的检索助手。
+规则：
+1. 只从提供的数据库中回答，不补全、不推断不存在的人物
+2. 不引用数、不估算创业估值
+3. 缺失信息说"数据库暂未收录"
+4. 简洁、中文回答，不超过 150 字
+5. 你在一个学术档案系统内，保持客观严肃
+
+当前数据库（12人种子期）：
+${names}`;
+
+  try {
+    const resp = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        model: "claude-sonnet-4-6",
+        max_tokens: 1000,
+        system: SYSTEM,
+        messages: [{ role: "user", content: q }]
+      })
+    });
+    const data = await resp.json();
+    const text = data.content?.map(b => b.text||'').join('') || '未获得回应';
+    content.textContent = text;
+  } catch(e) {
+    content.textContent = '检索服务暂时不可用，请使用筛选器手动检索。';
+  }
+}
+
+// ── Person page ──
+function openPerson(id) {
+  const p = PERSONS.find(x => x.id === id);
+  if (!p) return;
+
+  // avatar
+  document.getElementById('pp-avatar').textContent = p.name_en[0];
+  document.getElementById('pp-name').textContent = p.name_en;
+  document.getElementById('pp-name-en').textContent = p.name_zh || '待核验';
+  document.getElementById('pp-lede').textContent = p.contribution_lede;
+
+  // tags
+  const tags = document.getElementById('pp-tags');
+  tags.innerHTML = `
+    <span class="meta-tag person-tier ${TIER_CLASSES[p.tier]}">${TIER_LABELS[p.tier]}</span>
+    ${p.fields.map(f=>`<span class="meta-tag">${f}</span>`).join('')}
+    <span class="meta-tag">入册 ${p.induction_year}</span>
+    ${p.is_living ? '<span class="meta-tag" style="color:var(--roster)">在世人物</span>' : ''}
+  `;
+
+  // affils
+  const affils = document.getElementById('pp-affils');
+  affils.innerHTML = p.affiliated_institutions.map((a,i) =>
+    `<div class="affil-chip ${i===0?'primary':''}">${a}</div>`
+  ).join('');
+
+  // works
+  const works = document.getElementById('pp-works');
+  works.innerHTML = p.works.map((w,i) => `
+    <div class="work-item">
+      <span class="work-num">${i+1}</span>
+      <div class="work-content">
+        <div class="work-title">${w.title}</div>
+        <div class="work-meta">${w.venue}</div>
+        ${w.pending ? `<span class="work-pending">来源链接待核验</span>` :
+          w.url ? `<a href="${w.url}" target="_blank" class="work-link">查看原文 ↗</a>` : ''}
+      </div>
+    </div>
+  `).join('');
+
+  // sources
+  const sources = document.getElementById('pp-sources');
+  sources.innerHTML = p.sources.map(s => `
+    <div class="source-item">
+      <span class="source-tier-badge tier${s.tier}">T${s.tier}</span>
+      <span class="source-text">
+        ${s.url && !s.pending ? `<a href="${s.url}" target="_blank">${s.text}</a>` : s.text}
+        ${s.pending ? ' <em style="color:var(--pending)">（链接待核验）</em>' : ''}
+      </span>
+    </div>
+  `).join('');
+}
+
+// ── University wall ──
+function switchUni(el, id) {
+  document.querySelectorAll('.uni-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.uni-panel').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('uni-'+id).classList.add('active');
+}
+
+function buildWall(wallId, gridId) {
+  const ids = WALL_PERSONS[wallId] || [];
+  const grid = document.getElementById(gridId);
+  if (!grid) return;
+  grid.innerHTML = '';
+  const list = PERSONS.filter(p => ids.includes(p.id));
+  list.forEach(p => {
+    const cell = document.createElement('div');
+    cell.className = 'uni-person-cell';
+    cell.onclick = () => { openPerson(p.id); showPage('person', null); };
+    cell.innerHTML = `
+      <span class="person-tier ${TIER_CLASSES[p.tier]}">${TIER_LABELS[p.tier]}</span>
+      <div class="person-name" style="margin-top:.4rem">${p.name_zh||p.name_en}</div>
+      <div class="person-name-en" style="font-size:.76rem;color:var(--ink-soft)">${p.name_en}</div>
+      <div class="person-one-liner" style="font-size:.79rem;margin-top:.4rem">${p.contribution_lede.slice(0,50)}…</div>
+    `;
+    grid.appendChild(cell);
+  });
+  // fill empty cells to keep grid
+  while (grid.children.length < 3) {
+    const empty = document.createElement('div');
+    empty.className = 'uni-person-cell';
+    empty.style.background = 'var(--paper-warm)';
+    empty.style.cursor = 'default';
+    empty.innerHTML = `<div style="font-size:.78rem;color:var(--ink-soft);font-style:italic;padding:.5rem 0">更多入册人物敬请期待</div>`;
+    grid.appendChild(empty);
+  }
+}
+
+// ── Modal ──
+function openCorrectionModal() {
+  document.getElementById('correction-modal').classList.add('open');
+}
+function closeModal() {
+  document.getElementById('correction-modal').classList.remove('open');
+}
+document.getElementById('correction-modal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+
+// ── Init ──
+buildHomeGrid();
+buildResultsTable(PERSONS);
+buildWall('stanford', 'wall-stanford-grid');
+buildWall('berkeley', 'wall-berkeley-grid');
+buildWall('cmu', 'wall-cmu-grid');
+buildWall('toronto', 'wall-toronto-grid');
+
+// Open default person
+openPerson('hinton-g');
+
+// Filter listeners
+document.getElementById('f-uni').addEventListener('change', filterResults);
+document.getElementById('f-field').addEventListener('change', filterResults);
+document.getElementById('f-tier').addEventListener('change', filterResults);
+document.getElementById('f-era').addEventListener('change', filterResults);
+</script>
+</body>
+</html>
