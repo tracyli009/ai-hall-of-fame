@@ -1068,7 +1068,7 @@ footer a:hover { color: white; }
 
   <div class="stats-bar">
     <div class="stat-item">
-      <span class="stat-num">12</span>
+      <span class="stat-num">10</span>
       <div class="stat-label">入册人物（种子期）</div>
     </div>
     <div class="stat-item">
@@ -1269,9 +1269,9 @@ footer a:hover { color: white; }
       <p style="font-size:.85rem;color:var(--ink-soft)">种子期示范四校 · 数据完整性同等标准</p>
     </div>
     <div class="uni-tabs">
-      <div class="uni-tab active" onclick="switchUni(this,'stanford')">斯坦福 <span class="uni-count">3</span></div>
+      <div class="uni-tab active" onclick="switchUni(this,'stanford')">斯坦福 <span class="uni-count">2</span></div>
       <div class="uni-tab" onclick="switchUni(this,'berkeley')">伯克利 <span class="uni-count">3</span></div>
-      <div class="uni-tab" onclick="switchUni(this,'cmu')">CMU <span class="uni-count">3</span></div>
+      <div class="uni-tab" onclick="switchUni(this,'cmu')">CMU <span class="uni-count">2</span></div>
       <div class="uni-tab" onclick="switchUni(this,'toronto')">多伦多 <span class="uni-count">3</span></div>
     </div>
 
@@ -1282,9 +1282,9 @@ footer a:hover { color: white; }
           <div class="uni-tagline">Stanford University · Founded 1885</div>
         </div>
         <div class="uni-stats-mini">
-          <div class="uni-stat-mini"><span class="num">3</span><div class="lbl">入册人物</div></div>
-          <div class="uni-stat-mini"><span class="num">1</span><div class="lbl">殿堂</div></div>
-          <div class="uni-stat-mini"><span class="num">2</span><div class="lbl">名录/新锐</div></div>
+          <div class="uni-stat-mini"><span class="num">2</span><div class="lbl">入册人物</div></div>
+          <div class="uni-stat-mini"><span class="num">0</span><div class="lbl">殿堂</div></div>
+          <div class="uni-stat-mini"><span class="num">2</span><div class="lbl">名录/功勋</div></div>
         </div>
       </div>
       <div class="uni-roster-grid" id="wall-stanford-grid"></div>
@@ -1310,9 +1310,9 @@ footer a:hover { color: white; }
           <div class="uni-tagline">Carnegie Mellon University · Founded 1900</div>
         </div>
         <div class="uni-stats-mini">
-          <div class="uni-stat-mini"><span class="num">3</span><div class="lbl">入册人物</div></div>
-          <div class="uni-stat-mini"><span class="num">1</span><div class="lbl">殿堂</div></div>
-          <div class="uni-stat-mini"><span class="num">2</span><div class="lbl">名录/新锐</div></div>
+          <div class="uni-stat-mini"><span class="num">2</span><div class="lbl">入册人物</div></div>
+          <div class="uni-stat-mini"><span class="num">0</span><div class="lbl">殿堂</div></div>
+          <div class="uni-stat-mini"><span class="num">2</span><div class="lbl">功勋</div></div>
         </div>
       </div>
       <div class="uni-roster-grid" id="wall-cmu-grid"></div>
@@ -1648,7 +1648,7 @@ const PERSONS = [
     primary_institution: "多伦多大学",
     fields: ["机器学习", "深度神经网络"],
     contribution_lede: "反向传播算法的关键推动者，深度学习现代复兴的核心奠基人，2024年诺贝尔物理学奖得主",
-    induction_year: 2024,
+    induction_year: null,
     is_living: true,
     photo_authorized: false,
     wall: "toronto",
@@ -1672,14 +1672,14 @@ const PERSONS = [
     primary_institution: "纽约大学",
     fields: ["计算机视觉", "卷积神经网络"],
     contribution_lede: "卷积神经网络之父，推动计算机视觉从理论走向工业实践",
-    induction_year: 2024,
+    induction_year: null,
     is_living: true,
     photo_authorized: false,
     wall: null,
     works: [
       { title: "Gradient-based learning applied to document recognition (LeNet)", venue: "Proc. IEEE, 1998", url: "https://ieeexplore.ieee.org/document/726791", pending: false },
       { title: "A Tutorial on Energy-Based Learning", venue: "MIT Press, 2006", url: "https://yann.lecun.com/exdb/publis/pdf/lecun-06.pdf", pending: false },
-      { title: "Deep Learning (textbook)", venue: "MIT Press, 2016", url: "https://www.deeplearningbook.org/", pending: false }
+      { title: "Deep Learning (textbook, Goodfellow / Bengio / Courville)", venue: "MIT Press, 2016", url: "https://www.deeplearningbook.org/", pending: false }
     ],
     sources: [
       { tier: 1, text: "ACM Turing Award 2018 — ACM official", url: "https://awards.acm.org/about/2018-turing" },
@@ -1696,7 +1696,7 @@ const PERSONS = [
     primary_institution: "蒙特利尔大学",
     fields: ["机器学习", "自然语言处理", "AI 安全"],
     contribution_lede: "深度学习三巨头之一，Attention 机制早期探索者，近年转型为 AI 安全倡导者",
-    induction_year: 2024,
+    induction_year: null,
     is_living: true,
     photo_authorized: false,
     wall: null,
@@ -1712,54 +1712,6 @@ const PERSONS = [
     ]
   },
   {
-    id: "ng-andrew",
-    name_en: "Andrew Ng",
-    name_zh: "吴恩达",
-    tier: "hall",
-    affiliated_institutions: ["斯坦福大学", "Coursera（联创）", "DeepLearning.AI"],
-    primary_institution: "斯坦福大学",
-    fields: ["机器学习", "AI 教育"],
-    contribution_lede: "将机器学习教育普及至全球数百万学习者，推动 AI 工具链落地产业",
-    induction_year: 2024,
-    is_living: true,
-    photo_authorized: false,
-    wall: "stanford",
-    works: [
-      { title: "Machine Learning (Coursera, Stanford)", venue: "Coursera, 2012", url: "https://www.coursera.org/learn/machine-learning", pending: false },
-      { title: "Building High-Performance Robotics Systems using Deep Learning", venue: "Stanford CS dept, 2010s", url: null, pending: true },
-      { title: "Deep Learning Specialization", venue: "DeepLearning.AI, 2017", url: "https://www.deeplearning.ai/courses/deep-learning-specialization/", pending: false }
-    ],
-    sources: [
-      { tier: 1, text: "Stanford Engineering faculty profile", url: "https://profiles.stanford.edu/andrew-ng" },
-      { tier: 2, text: "Time 100 Most Influential People in AI, 2023", url: "https://time.com/collection/time100-ai/6309009/andrew-ng/" },
-      { tier: 3, text: "DeepLearning.AI about page", url: "https://www.deeplearning.ai/about/" }
-    ]
-  },
-  {
-    id: "fei-fei-li",
-    name_en: "Fei-Fei Li",
-    name_zh: "李飞飞",
-    tier: "hall",
-    affiliated_institutions: ["斯坦福大学", "Google Cloud AI（前首席科学家）"],
-    primary_institution: "斯坦福大学",
-    fields: ["计算机视觉", "AI 民主化"],
-    contribution_lede: "创建 ImageNet 数据集，开启深度学习计算机视觉时代，推动 AI 包容性发展",
-    induction_year: 2024,
-    is_living: true,
-    photo_authorized: false,
-    wall: "stanford",
-    works: [
-      { title: "ImageNet: A Large-Scale Hierarchical Image Database", venue: "CVPR, 2009", url: "https://ieeexplore.ieee.org/document/5206848", pending: false },
-      { title: "CS231n: Convolutional Neural Networks for Visual Recognition", venue: "Stanford, 2015", url: "https://cs231n.stanford.edu/", pending: false },
-      { title: "The Worlds I See (memoir)", venue: "Flatiron Books, 2023", url: "https://www.worldsisee.com/", pending: false }
-    ],
-    sources: [
-      { tier: 1, text: "Stanford HAI Co-Director profile", url: "https://hai.stanford.edu/people/fei-fei-li" },
-      { tier: 2, text: "Time 100 Most Influential People in AI, 2023", url: "https://time.com/collection/time100-ai/6309074/fei-fei-li/" },
-      { tier: 2, text: "The New York Times: She Helped Make AI a Science, 2022", url: "https://www.nytimes.com/2022/10/18/science/fei-fei-li-artificial-intelligence.html" }
-    ]
-  },
-  {
     id: "sutton-richard",
     name_en: "Richard Sutton",
     name_zh: "理查德·萨顿",
@@ -1768,7 +1720,7 @@ const PERSONS = [
     primary_institution: "阿尔伯塔大学",
     fields: ["强化学习"],
     contribution_lede: "强化学习理论体系的奠基人，《强化学习》教材作者",
-    induction_year: 2024,
+    induction_year: null,
     is_living: true,
     photo_authorized: false,
     wall: null,
@@ -1780,7 +1732,6 @@ const PERSONS = [
     sources: [
       { tier: 1, text: "University of Alberta RLAI Lab — faculty page", url: "https://rlai.ualberta.ca/", pending: false },
       { tier: 1, text: "ACM Fellow citation, 2022", url: "https://awards.acm.org/fellows", pending: false },
-      { tier: 2, text: "Wired: The Man Who Helped Turn AI into a Juggernaut, 2023", url: null, pending: true }
     ]
   },
   {
@@ -1792,7 +1743,7 @@ const PERSONS = [
     primary_institution: "加州大学伯克利分校",
     fields: ["AI 安全", "机器学习理论"],
     contribution_lede: "《人工智能：现代方法》作者，AI 安全领域领军人物",
-    induction_year: 2024,
+    induction_year: null,
     is_living: true,
     photo_authorized: false,
     wall: "berkeley",
@@ -1803,7 +1754,6 @@ const PERSONS = [
     ],
     sources: [
       { tier: 1, text: "UC Berkeley EECS faculty profile", url: "https://people.eecs.berkeley.edu/~russell/" },
-      { tier: 2, text: "Financial Times: AI Godfather on the Existential Threat, 2023", url: null, pending: true },
       { tier: 3, text: "CHAI — Center for Human-Compatible AI", url: "https://humancompatible.ai/" }
     ]
   },
@@ -1812,14 +1762,14 @@ const PERSONS = [
     name_en: "Jeff Dean",
     name_zh: "杰夫·迪恩",
     tier: "roster",
-    affiliated_institutions: ["卡内基梅隆大学（学士）", "华盛顿大学（博士）", "Google DeepMind（首席科学家）"],
-    primary_institution: "卡内基梅隆大学",
+    affiliated_institutions: ["明尼苏达大学（学士）", "华盛顿大学（博士）", "Google DeepMind（首席科学家）"],
+    primary_institution: "华盛顿大学",
     fields: ["机器学习系统", "大规模分布式计算"],
     contribution_lede: "主导 TensorFlow 开发，推动大规模机器学习基础设施走向工业化",
-    induction_year: 2024,
+    induction_year: null,
     is_living: true,
     photo_authorized: false,
-    wall: "cmu",
+    wall: null,
     works: [
       { title: "TensorFlow: A System for Large-Scale Machine Learning", venue: "OSDI, 2016", url: "https://www.usenix.org/conference/osdi16/technical-sessions/presentation/abadi", pending: false },
       { title: "Attention Is All You Need", venue: "NeurIPS, 2017 (共同团队)", url: "https://arxiv.org/abs/1706.03762", pending: false },
@@ -1827,7 +1777,6 @@ const PERSONS = [
     ],
     sources: [
       { tier: 1, text: "Google Research — Jeff Dean profile", url: "https://research.google/people/jeff/" },
-      { tier: 2, text: "Wired: Jeff Dean — The Wizard of Google's Machine Learning, 2020", url: null, pending: true },
       { tier: 3, text: "Google DeepMind leadership page", url: "https://deepmind.google/about/", pending: false }
     ]
   },
@@ -1840,18 +1789,16 @@ const PERSONS = [
     primary_institution: "加州大学伯克利分校",
     fields: ["强化学习", "机器人学习"],
     contribution_lede: "将强化学习与机器人操控结合，推动工业机器人智能化关键进展",
-    induction_year: 2024,
+    induction_year: null,
     is_living: true,
     photo_authorized: false,
     wall: "berkeley",
     works: [
       { title: "Apprenticeship Learning via Inverse Reinforcement Learning", venue: "ICML, 2004", url: "https://dl.acm.org/doi/10.1145/1015330.1015430", pending: false },
-      { title: "Learning to Learn with Probabilistic Task Embeddings", venue: "ICLR, 2019", url: null, pending: true },
       { title: "DEXTEROUS manipulation with RL — Covariant", venue: "Covariant AI, 2023", url: "https://covariant.ai/", pending: false }
     ],
     sources: [
       { tier: 1, text: "UC Berkeley EECS faculty profile", url: "https://people.eecs.berkeley.edu/~pabbeel/" },
-      { tier: 2, text: "MIT Technology Review: 35 Innovators Under 35, 2011", url: null, pending: true },
       { tier: 3, text: "Covariant AI founders page", url: "https://covariant.ai/about/" }
     ]
   },
@@ -1864,7 +1811,7 @@ const PERSONS = [
     primary_institution: "卡内基梅隆大学",
     fields: ["机器学习", "AI 教育"],
     contribution_lede: "《机器学习》教材作者，CMU 机器学习系创始主任，培育数代 ML 研究者",
-    induction_year: 2024,
+    induction_year: null,
     is_living: true,
     photo_authorized: false,
     wall: "cmu",
@@ -1875,7 +1822,6 @@ const PERSONS = [
     ],
     sources: [
       { tier: 1, text: "CMU School of Computer Science — Tom Mitchell profile", url: "https://www.cs.cmu.edu/~tom/", pending: false },
-      { tier: 1, text: "AAAI Fellow citation", url: null, pending: true },
       { tier: 3, text: "CMU ML Department history", url: "https://www.ml.cmu.edu/about/", pending: false }
     ]
   },
@@ -1888,7 +1834,7 @@ const PERSONS = [
     primary_institution: "斯坦福大学",
     fields: ["概率图模型", "AI 教育", "生物医疗 AI"],
     contribution_lede: "概率图模型领域权威，推动在线教育革命，将 AI 引入药物发现",
-    induction_year: 2024,
+    induction_year: null,
     is_living: true,
     photo_authorized: false,
     wall: "stanford",
@@ -1900,7 +1846,6 @@ const PERSONS = [
     sources: [
       { tier: 1, text: "MacArthur Fellowship (Genius Grant) 2004", url: "https://www.macfound.org/fellows/class-of-2004/daphne-koller", pending: false },
       { tier: 1, text: "Stanford CS emeritus faculty profile", url: "https://ai.stanford.edu/~koller/", pending: false },
-      { tier: 2, text: "Forbes: Daphne Koller's bet on drug discovery AI, 2023", url: null, pending: true }
     ]
   },
   {
@@ -1912,7 +1857,7 @@ const PERSONS = [
     primary_institution: "斯坦福大学",
     fields: ["机器人学习", "自动驾驶", "AI 教育"],
     contribution_lede: "斯坦福 DARPA Challenge 自动驾驶冠军队带领者，Google X 联合创立者，在线教育先驱",
-    induction_year: 2024,
+    induction_year: null,
     is_living: true,
     photo_authorized: false,
     wall: "stanford",
@@ -1923,7 +1868,6 @@ const PERSONS = [
     ],
     sources: [
       { tier: 1, text: "Stanford AI Lab — Sebastian Thrun profile (emeritus)", url: "https://cs.stanford.edu/people/thrun/", pending: false },
-      { tier: 2, text: "Wired: The Man Behind the Google Car, 2012", url: null, pending: true },
       { tier: 3, text: "Udacity About page", url: "https://www.udacity.com/about", pending: false }
     ]
   }
@@ -1934,9 +1878,9 @@ const TIER_CLASSES = { hall: "tier-hall", roster: "tier-roster", rising: "tier-r
 
 // Wall mapping
 const WALL_PERSONS = {
-  stanford: ["ng-andrew","fei-fei-li","koller-daphne","thrun-sebastian"],
+  stanford: ["koller-daphne","thrun-sebastian"],
   berkeley: ["russell-stuart","abbeel-pieter"],
-  cmu: ["dean-jeff","mitchell-tom","thrun-sebastian"],
+  cmu: ["mitchell-tom","thrun-sebastian"],
   toronto: ["hinton-g"]
 };
 
